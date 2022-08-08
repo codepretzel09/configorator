@@ -27,6 +27,20 @@
           "perms" : "644"
                 },
           "reload" : ["apache2", "php"]
-        }        
+        },
+        {
+          "name": "buntu3",
+          "address": "192.168.1.79:22",
+          "apps-install":  ["nano", "php", "apache2"],
+          "apps-remove": ["htop", "vim"],
+          "file": {
+            "name": "/var/www/html/index.php",
+            "content":  "<?php\nheader(\"Content-Type: text/plain\");\necho \"Hello, world!\"\n;",
+            "owner" : "www-data",
+            "group" : "www-data",
+            "perms" : "644"
+                  },
+            "reload" : ["apache2", "php"]
+          }         
     ]
   }

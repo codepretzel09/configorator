@@ -136,7 +136,7 @@ func main() {
         }
 
         // RESTART SERVICES
-        // Red.  Your tool must provide some mechanism for restarting a service when relevant files or packages are updated
+        // Req.  Your tool must provide some mechanism for restarting a service when relevant files or packages are updated
         // Action Items
         // - Build in file/pkg change detection (if this file has changed, restart x service)
 
