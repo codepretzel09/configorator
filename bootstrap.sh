@@ -1,6 +1,7 @@
 # bootstrap.sh
 # Problems? make sure i'm executable by running:  chmod +x bootstrap.sh
 
-apt-get install go -y
-go mod init github.com/codepretzel09/configorator
-go get github.com/sfreiberg/simplessh
+
+apt-get install git -y
+snap install go --classic
+git clone https://github.com/codepretzel09/configorator.git
