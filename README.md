@@ -10,7 +10,7 @@ This tool can be used to configure certain config parameters on debian hosts.
 
 1. run bootstrap.sh / Clone the repo
 
-    bootstrap.sh will install git and go and clone the repo
+    bootstrap.sh will install git, go, and clone the repo
     
     Alternatively, If you already have git and go installed, you can clone the repo ``` git clone https://github.com/codepretzel09/configorator.git ``` and proceed to the next step
 
