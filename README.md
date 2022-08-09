@@ -14,7 +14,7 @@ This tool can be used to configure certain config parameters on debian hosts.
     
     Alternatively, If you already have git and go installed, you can clone the repo ``` git clone https://github.com/codepretzel09/configorator.git ``` and proceed to the next step
 
-3. update the config.json file and set your user and password variables ( Line 66 and 67 in configorator.go)
+3. update the config.json file and set your user and password variables (Line 66 and 67 in configorator.go)
 
     The config.json file is where you'll set your config parameters for your debian hosts. You can view the example currently loaded in config.json
 
