@@ -12,7 +12,7 @@ This tool can be used to configure certain config parameters on debian hosts.
 
     bootstrap.sh will install git and go and clone the repo
     
-    Alternateively, If you aleady have git and go installed, you can clone the repo ``` git clone https://github.com/codepretzel09/configorator.git ``` and proceed to the next step
+    Alternatively, If you already have git and go installed, you can clone the repo ``` git clone https://github.com/codepretzel09/configorator.git ``` and proceed to the next step
 
 3. update the config.json file and set your user and password variables ( Line 66 and 67 in configorator.go)
 
@@ -24,7 +24,7 @@ This tool can be used to configure certain config parameters on debian hosts.
 
 4. go run configorator.go
 
-    With config parameters set, you can now run: ``` go run configorator.go ``` and watch the output for feedback and possible errors
+    With config parameters set, you can now run: ``` go run configorator.go ``` from within the project root directory and watch the output for feedback and/or possible errors
 
 
 # Architecture
