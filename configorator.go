@@ -21,6 +21,7 @@ type Config struct {
         AppsInstall []string `json:"apps-install"`
         AppsRemove  []string `json:"apps-remove"`
         Reload      []string `json:"reload"`
+        FileRemove  []string `json:"files-remove"`    
         File        File     `json:"file"`
 }
 
@@ -57,16 +58,6 @@ func main() {
 
         // we iterate through every user within our config array
         for i := 0; i < len(config.Configs); i++ {
-/*              fmt.Println("IP: " + config.Configs[i].Address)
-                fmt.Println(config.Configs[i].AppsInstall)
-                fmt.Println(config.Configs[i].AppsRemove)
-                fmt.Println("Host: " + config.Configs[i].Name)
-                fmt.Println("owner: " + config.Configs[i].File.Owner)
-                fmt.Println("filename: " + config.Configs[i].File.Name)
-                fmt.Println("content: " + config.Configs[i].File.Content)
-                fmt.Println("group: " + config.Configs[i].File.Group)
-                fmt.Println("perms: " + config.Configs[i].File.Perms)
-                fmt.Println(config.Configs[i].Reload) */
 
         }
 
@@ -79,7 +70,7 @@ func main() {
         // - Improve iteration of more than one file
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithKeyFile(config.Configs[i].Address, "root", "/root/.ssh/id_rsa")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
                 if err != nil {
                         panic(err)
                 }
@@ -97,6 +88,30 @@ func main() {
                 client.Exec("chmod ' " + perms + " " + file)
                 client.Exec("chown ' " + owner + " " + file)
                 client.Exec("chgrp ' " + group + " " + file)
+    
+
+        }
+
+
+   for i := 0; i < len(config.Configs); i++ {
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
+                if err != nil {
+                        panic(err)
+                }
+
+                files := config.Configs[i].FileRemove
+                fmt.Println("Removing File(s)", config.Configs[i].Name, files)
+                defer client.Close()
+
+                 for _, element := range files {
+                        client.Exec("rm " + element)
+                        fmt.Println(element)
+                }
+                files = files[:0] // Clear the slice
+
+       
+  
+
 
         }
 
@@ -106,7 +121,7 @@ func main() {
         // - Improve Idempotency
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithKeyFile(config.Configs[i].Address, "root", "/root/.ssh/id_rsa")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
                 if err != nil {
                         panic(err)
                 }
@@ -122,7 +137,7 @@ func main() {
         }
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithKeyFile(config.Configs[i].Address, "root", "/root/.ssh/id_rsa")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
                 if err != nil {
                         panic(err)
                 }
@@ -143,7 +158,7 @@ func main() {
         // - Build in file/pkg change detection (if this file has changed, restart x service)
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithKeyFile(config.Configs[i].Address, "root", "/root/.ssh/id_rsa")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
                 if err != nil {
                         panic(err)
                 }
