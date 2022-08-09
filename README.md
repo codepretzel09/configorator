@@ -18,9 +18,10 @@ This tool can be used to configure certain config parameters on debian hosts.
 
     The config.json file is where you'll set your config parameters for your debian hosts. You can view the example currently loaded in config.json
 
-     for a more secure connection, use passwordless auth with a key and use this instead 
+     *for a more secure connection, use passwordless auth with a key and use this instead 
 
      ``` simplessh.ConnectWithKeyFile("hostname_to_ssh_to") ```
+
 
 4. go run configorator.go
 
