@@ -3,7 +3,7 @@
       {
         "name": "buntu1",
         "address": "192.168.1.78:22",
-        "apps-install": ["apache2", "vim", "php"],
+        "apps-install": ["apache2", "libapache2-mod-php", "php"],
         "apps-remove": ["nginx", "htop"],
         "file": {
           "name": "/var/www/html/index.php",
@@ -17,7 +17,7 @@
       {
         "name": "buntu2",
         "address": "192.168.1.77:22",
-        "apps-install":  ["nano", "php", "apache2"],
+        "apps-install": ["apache2", "libapache2-mod-php", "php"],
         "apps-remove": ["htop", "vim"],
         "file": {
           "name": "/var/www/html/index.php",
@@ -27,20 +27,6 @@
           "perms" : "644"
                 },
           "reload" : ["apache2", "php"]
-        },
-        {
-          "name": "buntu3",
-          "address": "192.168.1.79:22",
-          "apps-install":  ["nano", "php", "apache2"],
-          "apps-remove": ["htop", "vim"],
-          "file": {
-            "name": "/var/www/html/index.php",
-            "content":  "<?php\nheader(\"Content-Type: text/plain\");\necho \"Hello, world!\"\n;",
-            "owner" : "www-data",
-            "group" : "www-data",
-            "perms" : "644"
-                  },
-            "reload" : ["apache2", "php"]
-          }         
+        }      
     ]
   }

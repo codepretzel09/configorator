@@ -57,7 +57,7 @@ func main() {
 
         // we iterate through every user within our config array
         for i := 0; i < len(config.Configs); i++ {
-                fmt.Println("IP: " + config.Configs[i].Address)
+/*              fmt.Println("IP: " + config.Configs[i].Address)
                 fmt.Println(config.Configs[i].AppsInstall)
                 fmt.Println(config.Configs[i].AppsRemove)
                 fmt.Println("Host: " + config.Configs[i].Name)
@@ -66,7 +66,7 @@ func main() {
                 fmt.Println("content: " + config.Configs[i].File.Content)
                 fmt.Println("group: " + config.Configs[i].File.Group)
                 fmt.Println("perms: " + config.Configs[i].File.Perms)
-                fmt.Println(config.Configs[i].Reload)
+                fmt.Println(config.Configs[i].Reload) */
 
         }
 
@@ -90,6 +90,8 @@ func main() {
                 owner := fmt.Sprintf(config.Configs[i].File.Owner)
                 group := fmt.Sprintf(config.Configs[i].File.Group)
                 defer client.Close()
+
+                fmt.Println("writing file " + file + " on " + config.Configs[i].Name)
 
                 client.Exec("echo ' " + content + "' > " + file)
                 client.Exec("chmod ' " + perms + " " + file)
