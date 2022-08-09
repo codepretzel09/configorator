@@ -83,7 +83,7 @@ func main() {
                 group := fmt.Sprintf(config.Configs[i].File.Group)
                 defer client.Close()
 
-                fmt.Println("writing file " + file + " on " + config.Configs[i].Name)
+                fmt.Println("Writing File(s) on " + file + " on " + config.Configs[i].Name)
 
                 client.Exec("echo ' " + content + "' > " + file)
                 client.Exec("chmod ' " + perms + " " + file)
@@ -98,12 +98,11 @@ func main() {
                 }
 
                 files := config.Configs[i].FileRemove
-                fmt.Println("Removing File(s)", config.Configs[i].Name, files)
+                fmt.Println("Removing File(s) on", config.Configs[i].Name, files)
                 defer client.Close()
 
                 for _, element := range files {
                         client.Exec("rm " + element)
-                        fmt.Println(element)
                 }
                 files = files[:0] // Clear the slice
 
