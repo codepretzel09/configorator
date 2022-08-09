@@ -35,6 +35,6 @@ This tool uses a json configuration file to declare specific parameters. SSH con
 
 The example in config.json is based off of the following challenge
 
-Your configuration must specify a web server capable of running the PHP application below
-- Both servers must respond 200 OK and include the string "Hello, world!" in their response to requests from curl -sv "http://ADDRESS";
-- For the purposes of this challenge, please do not reboot any of the provided servers.
+    - configure two debian web servers with php code using the custom CM tool
+    - both servers must return 200 OK from a curl request 
+    - do not reboot servers at any time
