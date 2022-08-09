@@ -1,4 +1,4 @@
-# confi**go**rator
+# confi***go***rator
 
 
 lightweight configuration management tool based on Ansible, Chef, and Puppet
