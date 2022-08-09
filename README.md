@@ -1,6 +1,6 @@
 # confi-go-rator
 
-lightweight CM tool based on Ansible, Chef, and Puppet
+lightweight configuration management tool based on Ansible, Chef, and Puppet
 
 This tool can be used to configure certain config parameters on debian hosts.
 
