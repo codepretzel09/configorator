@@ -25,7 +25,7 @@ This tool can be used to configure certain config parameters on debian hosts.
 
 4. go run configorator.go
 
-    With config parameters set, you can now run: ``` go run configorator.go ``` from within the project root directory and watch the output for feedback and/or possible errors
+    With config parameters set, you can now run: ``` go run configorator.go ```
 
 
 # Architecture
