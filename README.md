@@ -1,4 +1,4 @@
-# confi-go-rator![kindpng_2299464](https://user-images.githubusercontent.com/68131212/183575455-866b848a-1d16-41dc-a708-ee7a58b95d91.png)
+# confi**go**rator
 
 
 lightweight configuration management tool based on Ansible, Chef, and Puppet
