@@ -2,7 +2,7 @@
 
 lightweight configuration management tool based on Ansible, Chef, and Puppet
 
-This tool can be used to configure certain config parameters on debian hosts.
+This tool can be used to configure parameters on debian hosts
 
 
 # Getting Started
