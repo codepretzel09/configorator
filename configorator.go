@@ -70,11 +70,6 @@ func main() {
         // simplessh.ConnectWithKeyFile("hostname_to_ssh_to")
 
         // COPY FILE(s) AND SET PARAMS
-        // Req: abstraction that allows specifying a file's content and metadata
-        // Action Items
-        // - Improve Idempotency
-        // - Improve iteration of more than one file
-
         for i := 0; i < len(config.Configs); i++ {
                 client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
@@ -94,9 +89,8 @@ func main() {
                 client.Exec("chmod ' " + perms + " " + file)
                 client.Exec("chown ' " + owner + " " + file)
                 client.Exec("chgrp ' " + group + " " + file)
-
         }
-
+        // REMOVE FILE(S)
         for i := 0; i < len(config.Configs); i++ {
                 client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
@@ -114,12 +108,7 @@ func main() {
                 files = files[:0] // Clear the slice
 
         }
-
-        // INSTALL AND REMOVE PACKAGES
-        // Req. Your tool must provide an abstraction that allows installing and removing Debian packages
-        // Action Items
-        // - Improve Idempotency
-
+        // INSTALL PACKAGES
         for i := 0; i < len(config.Configs); i++ {
                 client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
@@ -135,7 +124,7 @@ func main() {
                 }
                 pkgList = pkgList[:0] // Clear the slice
         }
-
+        // REMOVE PACKAGES
         for i := 0; i < len(config.Configs); i++ {
                 client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
@@ -153,10 +142,6 @@ func main() {
         }
 
         // RESTART SERVICES
-        // Req.  Your tool must provide some mechanism for restarting a service when relevant files or packages are updated
-        // Action Items
-        // - Build in file/pkg change detection (if this file has changed, restart x service)
-
         for i := 0; i < len(config.Configs); i++ {
                 client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
@@ -169,7 +154,5 @@ func main() {
                 for _, element := range pkgList {
                         client.Exec("systemctl restart " + element)
                 }
-
         }
-
 }
