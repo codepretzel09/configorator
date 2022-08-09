@@ -1,12 +1,12 @@
 package main
 
 import (
+        "encoding/json"
         "fmt"
         "github.com/sfreiberg/simplessh"
-        "os"
-        "encoding/json"
         "io/ioutil"
-        )
+        "os"
+)
 
 // Config struct which contains
 // an array of server configs
@@ -21,11 +21,11 @@ type Config struct {
         AppsInstall []string `json:"apps-install"`
         AppsRemove  []string `json:"apps-remove"`
         Reload      []string `json:"reload"`
-        FileRemove  []string `json:"files-remove"`    
+        FileRemove  []string `json:"files-remove"`
         File        File     `json:"file"`
 }
 
-// File struct 
+// File struct
 type File struct {
         Name    string `json:"name"`
         Content string `json:"content"`
@@ -63,6 +63,12 @@ func main() {
 
         fmt.Println("")
 
+        var user string = "root"
+        var pass string = "password" // Set SSH password here for target hosts
+
+        // For a more secure connection use a key based auth with:
+        // simplessh.ConnectWithKeyFile("hostname_to_ssh_to")
+
         // COPY FILE(s) AND SET PARAMS
         // Req: abstraction that allows specifying a file's content and metadata
         // Action Items
@@ -70,7 +76,7 @@ func main() {
         // - Improve iteration of more than one file
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
                         panic(err)
                 }
@@ -88,13 +94,11 @@ func main() {
                 client.Exec("chmod ' " + perms + " " + file)
                 client.Exec("chown ' " + owner + " " + file)
                 client.Exec("chgrp ' " + group + " " + file)
-    
 
         }
 
-
-   for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
+        for i := 0; i < len(config.Configs); i++ {
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
                         panic(err)
                 }
@@ -103,15 +107,11 @@ func main() {
                 fmt.Println("Removing File(s)", config.Configs[i].Name, files)
                 defer client.Close()
 
-                 for _, element := range files {
+                for _, element := range files {
                         client.Exec("rm " + element)
                         fmt.Println(element)
                 }
                 files = files[:0] // Clear the slice
-
-       
-  
-
 
         }
 
@@ -121,7 +121,7 @@ func main() {
         // - Improve Idempotency
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
                         panic(err)
                 }
@@ -137,7 +137,7 @@ func main() {
         }
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
                         panic(err)
                 }
@@ -158,7 +158,7 @@ func main() {
         // - Build in file/pkg change detection (if this file has changed, restart x service)
 
         for i := 0; i < len(config.Configs); i++ {
-                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, "root", "password")
+                client, err := simplessh.ConnectWithPassword(config.Configs[i].Address, user, pass)
                 if err != nil {
                         panic(err)
                 }
