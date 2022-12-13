@@ -1,7 +1,7 @@
 # confi***go***rator
 
 
-lightweight configuration management tool based on Ansible, Chef, and Puppet
+lightweight configuration management tool for a timed challenge
 
 This tool can be used to configure parameters on debian hosts
 
